@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?p=data">Data</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?p=ekstra">Ekstrakulikuler</a>
+        </li>
       </ul>
     </div>
   </div>

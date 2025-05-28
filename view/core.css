@@ -24,6 +24,17 @@
   --text-dark: #333;
 }
 
+@keyframes dialogPop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 html {
   font-family: 'Arial';
 }
@@ -76,4 +87,26 @@ table tbody tr:nth-child(even) {
 table tbody tr:hover {
   background-color: var(--blue-lightest);
   transition: background-color 0.2s ease;
+}
+
+dialog {
+  border: solid 1px var(--blue);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+dialog[open] {
+  animation: dialogPop 300ms ease;
+}
+
+dialog::backdrop {
+  background-color: #000000AA;
+}
+
+button {
+  border: solid 1px var(--blue);
+  border-radius: 10px;
+  padding: 5px;
+  background-color: var(--white);
 }

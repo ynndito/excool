@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include '../config.php';
 include 'functions.php';
 
 if (isset($_POST['submit'])) {
@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         exit;
     }
 
-    $sql = "INSERT INTO anggota (nama, email, umur, minat) VALUES ('$nama', '$email', '$umur', '$minat')";
+    $sql = "INSERT INTO anggota (nama, email, umur, id_ekstra) VALUES ('$nama', '$email', '$umur', '$minat')";
     if (mysqli_query($conn, $sql)) {
         $_SESSION['pesan'] = "Pendaftaran berhasil!";
     } else {

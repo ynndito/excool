@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<?php
+	$page = $_GET['p'];
+?>
 <html>
 	<head>
-		<title>Title!</title>
+		<title>Excool - <?= $page ?></title>
 		<link rel="stylesheet" href="view/core.css">
 		<link rel="stylesheet" href="view/css/bootstrap.css">
 		<script src="view/js/bootstrap.js"></script>
@@ -14,10 +17,16 @@
 		?>
 		<div class="kf-container">
 			<?php
-				$page = $_GET['p'];
-
 				include "page/$page.php";
 			?>
 		</div>
+		<dialog id="formDialog">
+			<form method="POST" action="action/proses_ekstra.php">
+				<h3>Tambah Ekstrakulikuler</h3>
+				<label>Name: <input type="text" name="nama"></label><br>
+				<button type="submit">Submit</button>
+				<button type="button" onclick="document.getElementById('formDialog').close()">Cancel</button>
+			</form>
+		</dialog>
 	</body>
 </html>

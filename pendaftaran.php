@@ -72,7 +72,7 @@
 <body>
 <div class="container">
     <h2>Pendaftaran Anggota Ekstra</h2>
-    <form method="POST" action="proses.php">
+    <form method="POST" action="action/proses.php">
         <label for="nama">Nama Lengkap</label>
         <input type="text" name="nama" id="nama" required>
 
@@ -84,10 +84,15 @@
 
         <label for="minat">Minat</label>
         <select name="minat" id="minat">
-            <option value="Olahraga">Olahraga</option>
-            <option value="Musik">Musik</option>
-            <option value="Teknologi">Teknologi</option>
-            <option value="Seni">Seni</option>
+            <?php
+                include 'config.php';
+                $result2 = mysqli_query($conn, "SELECT * FROM ekstra");
+                $no = 1;
+                while ($row2 = mysqli_fetch_assoc($result2)) {
+                    echo "<option value='{$no}'>{$row2['nama_ekstra']}</option>";
+                    $no++;
+                }
+            ?>
         </select>
 
         <button type="submit" name="submit">Daftar Sekarang</button>
