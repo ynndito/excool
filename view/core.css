@@ -28,6 +28,25 @@ html {
   font-family: 'Arial';
 }
 
+body {
+  margin: 0;
+}
+
+.kf-container {
+  margin: 50px 10vw 0 10vw;
+}
+
+.kf-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.kf-filter a {
+  padding: 15px;
+  font-size: 17px;
+  border: solid 1px var(--gray-border);
+}
+
 table {
   width: 100%;
   border-collapse: separate;
@@ -58,4 +77,3 @@ table tbody tr:hover {
   background-color: var(--blue-lightest);
   transition: background-color 0.2s ease;
 }
-
