@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <?php
-	$page = $_GET['p'];
+    // 1. Default to "welcome" if no ?p is provided
+    if (!isset($_GET['p']) || $_GET['p'] === '') {
+        header("Location: index.php?p=welcome");
+        exit;
+    }
+
+    $page = $_GET['p'];
+
+    // 2. Redirect to err404 if the page file doesn't exist
+    if (!file_exists("page/$page.php")) {
+        header("Location: index.php?p=err404");
+        exit;
+    }
 ?>
 <html>
 	<head>
