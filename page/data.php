@@ -1,23 +1,28 @@
 <h2>Daftar Anggota</h2>
-<a class="btn" data-bs-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="filter">
+<a class="btn" data-bs-toggle="collapse" href="#filter" role="button" aria-expanded="<?= isset($_GET['filter']) && $_GET['filter'] !== '' ? 'true' : 'false' ?>" aria-controls="filter">
     Filter v
 </a>
-<div class="collapse kf-filter" id="filter">
+
 <?php
   include 'config.php';
 
-  $result = mysqli_query($conn, "SELECT nama_ekstra FROM ekstra");
-  $no2 = 1;
-  while ($row = mysqli_fetch_assoc($result)) {
-      echo "<a href=\"index.php?p=data&filter={$row['nama_ekstra']}\">{$row['nama_ekstra']}</a>";
-      $no2++;
-  }
+  $filterActive = isset($_GET['filter']) && $_GET['filter'] !== '';
 ?>
+
+<div class="collapse kf-filter <?= !$filterActive ? 'show' : '' ?>" id="filter">
+  <a href="index.php?p=data&filter=all">Semua</a>
+  <?php
+    $result = mysqli_query($conn, "SELECT nama_ekstra FROM ekstra");
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<a href=\"index.php?p=data&filter=" . htmlspecialchars($row['nama_ekstra']) . "\">" . htmlspecialchars($row['nama_ekstra']) . "</a>";
+    }
+  ?>
 </div>
+
 <?php
-if (isset($_GET['filter']) && $_GET['filter'] !== ''){
+if ($filterActive) {
 ?>
-<h4>Filter By: <?= isset($_GET['filter']) ?></h4>
+<h4>Filter By: <?= htmlspecialchars($_GET['filter']) ?></h4>
 <table>
   <thead>
     <th>No</th>
@@ -27,24 +32,33 @@ if (isset($_GET['filter']) && $_GET['filter'] !== ''){
     <th>Minat</th>
   </thead>
   <?php
-      $get = $_GET['filter'];
-      $result2 = mysqli_query($conn, "SELECT anggota.*, ekstra.nama_ekstra AS minat
+      $get = mysqli_real_escape_string($conn, $_GET['filter']);
+      if ($get == "all") {
+        $result2 = mysqli_query($conn, "SELECT anggota.*, ekstra.nama_ekstra AS minat
+        FROM anggota
+        JOIN ekstra ON anggota.id_ekstra = ekstra.id_ekstra
+        ORDER BY minat ASC;
+        ");
+      } else {
+        $result2 = mysqli_query($conn, "SELECT anggota.*, ekstra.nama_ekstra AS minat
         FROM anggota
         JOIN ekstra ON anggota.id_ekstra = ekstra.id_ekstra
         WHERE ekstra.nama_ekstra = '$get'
         ORDER BY minat ASC;
         ");
+      }
       $no = 1;
       while ($row2 = mysqli_fetch_assoc($result2)) {
           echo "<tbody>
                   <td>{$no}</td>
-                  <td>{$row2['nama']}</td>
-                  <td>{$row2['email']}</td>
-                  <td>{$row2['umur']}</td>
-                  <td>{$row2['minat']}</td>
+                  <td>" . htmlspecialchars($row2['nama']) . "</td>
+                  <td>" . htmlspecialchars($row2['email']) . "</td>
+                  <td>" . htmlspecialchars($row2['umur']) . "</td>
+                  <td>" . htmlspecialchars($row2['minat']) . "</td>
               </tbody>";
           $no++;
       }
     }
   ?>
 </table>
+

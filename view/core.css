@@ -22,6 +22,7 @@
   --gray-light: #f9f9f9;
   --gray-border: #ccc;
   --text-dark: #333;
+  --red: #FF2C2C;
 }
 
 @keyframes dialogPop {
@@ -56,6 +57,16 @@ body {
   padding: 15px;
   font-size: 17px;
   border: solid 1px var(--gray-border);
+}
+
+.kf-btn-red {
+  background-color: var(--red);
+  color: white;
+}
+
+.kf-btn-blue {
+  background-color: var(--blue-deep);
+  color: white;
 }
 
 table {
@@ -94,6 +105,10 @@ dialog {
   border-radius: 10px;
   padding: 25px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+dialog * {
+  padding: 5px 0 5px 0;
 }
 
 dialog[open] {

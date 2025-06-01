@@ -1,5 +1,5 @@
 <h2>Daftar Ekstrakulikuler</h2>
-<button clas="btn" onclick="document.getElementById('formDialog').showModal()">Tambah Data</button>
+<button clas="btn" onclick="document.getElementById('tambahEkstra').showModal()">Tambah Data</button>
 <table>
   <thead>
     <th>No</th>
@@ -15,8 +15,10 @@
                 <td>{$no}</td>
                 <td>{$row2['nama_ekstra']}</td>
                 <td>
-                  <a class='btn'>Edit</a>
-                  <a class='btn'>Delete</a>
+                  <a
+                    class='btn kf-btn-blue'
+                    onclick=\"openEditDialog('{$row2['id_ekstra']}', '" . htmlspecialchars($row2['nama_ekstra'], ENT_QUOTES) . "')\">Edit</a>
+                  <a class='btn kf-btn-red'>Delete</a>
                 </td>
             </tbody>";
         $no++;

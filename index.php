@@ -17,10 +17,9 @@
 <html>
 	<head>
 		<title>Excool - <?= $page ?></title>
-		<link rel="stylesheet" href="view/core.css">
 		<link rel="stylesheet" href="view/css/bootstrap.css">
+		<link rel="stylesheet" href="view/core.css">
 		<script src="view/js/bootstrap.js"></script>
-		<script src="script.js"></script>
 	</head>
 
 	<body>
@@ -32,13 +31,25 @@
 				include "page/$page.php";
 			?>
 		</div>
-		<dialog id="formDialog">
+		<dialog id="tambahEkstra">
 			<form method="POST" action="action/proses_ekstra.php">
 				<h3>Tambah Ekstrakulikuler</h3>
-				<label>Name: <input type="text" name="nama"></label><br>
+				<label>Nama: </label>
+				<input type="text" name="nama"><br>
 				<button type="submit">Submit</button>
-				<button type="button" onclick="document.getElementById('formDialog').close()">Cancel</button>
+				<button type="button" onclick="document.getElementById('tambahEkstra').close()">Cancel</button>
+			</form>
+		</dialog>
+		<dialog id="editEkstra">
+			<form method="POST" action="action/update_ekstra.php">
+				<h3>Edit Ekstrakulikuler</h3>
+				<label>Nama: </label>
+				<input type="hidden" name="id_ekstra" id="edit-id-ekstra">
+				<input type="text" name="nama"><br>
+				<button type="submit">Submit</button>
+				<button type="button" onclick="document.getElementById('editEkstra').close()">Cancel</button>
 			</form>
 		</dialog>
 	</body>
+	<script src="script.js"></script> <!-- FIXME: Yg ini error, gabisa -->
 </html>
