@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2025 at 04:28 AM
+-- Generation Time: Jun 03, 2025 at 08:22 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `excool`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absen`
+--
+
+CREATE TABLE `absen` (
+  `id_absensi` int(11) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
+  `id_ekstra` int(11) NOT NULL,
+  `tanggal_absen` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -46,6 +59,19 @@ INSERT INTO `anggota` (`id`, `nama`, `email`, `umur`, `id_ekstra`) VALUES
 (4, 'Ade Ahmad K', 'ade.ahmad.kurniawan.150@gmail.com', 16, 4),
 (5, 'Mario Muh. F', 'mario@gmail.com', 17, 5),
 (6, 'Praboro Kuasetige', 'uwu.cutie.xd@gmail.com', 17, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bukti`
+--
+
+CREATE TABLE `bukti` (
+  `id_bukti` int(11) NOT NULL,
+  `id_ekstra` int(11) NOT NULL,
+  `foto` blob NOT NULL,
+  `tanggal_bukti` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -79,10 +105,25 @@ INSERT INTO `ekstra` (`id_ekstra`, `nama_ekstra`) VALUES
 --
 
 --
+-- Indexes for table `absen`
+--
+ALTER TABLE `absen`
+  ADD PRIMARY KEY (`id_absensi`),
+  ADD UNIQUE KEY `id_anggota` (`id_anggota`),
+  ADD UNIQUE KEY `id_ekstra` (`id_ekstra`);
+
+--
 -- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `id_ekstra` (`id_ekstra`);
+
+--
+-- Indexes for table `bukti`
+--
+ALTER TABLE `bukti`
+  ADD PRIMARY KEY (`id_bukti`),
   ADD KEY `id_ekstra` (`id_ekstra`);
 
 --
@@ -96,26 +137,51 @@ ALTER TABLE `ekstra`
 --
 
 --
+-- AUTO_INCREMENT for table `absen`
+--
+ALTER TABLE `absen`
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `bukti`
+--
+ALTER TABLE `bukti`
+  MODIFY `id_bukti` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ekstra`
 --
 ALTER TABLE `ekstra`
-  MODIFY `id_ekstra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_ekstra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `absen`
+--
+ALTER TABLE `absen`
+  ADD CONSTRAINT `absen_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `absen_ibfk_2` FOREIGN KEY (`id_ekstra`) REFERENCES `ekstra` (`id_ekstra`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD CONSTRAINT `anggota_ibfk_1` FOREIGN KEY (`id_ekstra`) REFERENCES `ekstra` (`id_ekstra`);
+
+--
+-- Constraints for table `bukti`
+--
+ALTER TABLE `bukti`
+  ADD CONSTRAINT `bukti_ibfk_1` FOREIGN KEY (`id_ekstra`) REFERENCES `ekstra` (`id_ekstra`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
