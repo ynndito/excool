@@ -2,10 +2,9 @@
 include '../config.php';
 
 $id_ekstra = $_POST['id_ekstra'];
-$nama_ekstra = $_POST['nama'];
 
 // Use prepared statement for safety, but here's a simple example:
-mysqli_query($conn, "UPDATE ekstra SET nama_ekstra = '$nama_ekstra' WHERE id_ekstra = $id_ekstra");
+mysqli_query($conn, "DELETE FROM ekstra WHERE `ekstra`.`id_ekstra` = $id_ekstra");
 
 // Optional: redirect back nya~
 header("Location: ../index.php?p=ekstra");

@@ -1,7 +1,7 @@
 <?php
 include '../config.php';
 
-$nama_ekstra = $_POST['nama_ekstra'];
+$nama_ekstra = $_POST['nama'];
 
 mysqli_query($conn, "INSERT INTO ekstra (nama_ekstra) VALUES ('$nama_ekstra')");
 

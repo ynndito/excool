@@ -23,6 +23,7 @@
 if ($filterActive) {
 ?>
 <h4>Filter By: <?= htmlspecialchars($_GET['filter']) ?></h4>
+<div class="kf-overflowed">
 <table>
   <thead>
     <th>No</th>
@@ -61,4 +62,4 @@ if ($filterActive) {
     }
   ?>
 </table>
-
+</div>
