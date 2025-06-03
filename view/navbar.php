@@ -21,10 +21,16 @@
           <a class="nav-link" href="index.php?p=welcome">Beranda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?p=data">Data</a>
+          <a class="nav-link" href="index.php?p=anggota">Anggota</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.php?p=ekstra">Ekstrakulikuler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?p=absen">Absensi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?p=bukti">Bukti Kegiatan</a>
         </li>
       </ul>
     </div>

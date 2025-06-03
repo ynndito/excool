@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Excool - <?= $page ?></title>
+		<title>Excool - <?= ucwords(str_replace("_", " ", $page)); ?></title>
 		<link rel="stylesheet" href="view/css/bootstrap.css">
 		<link rel="stylesheet" href="view/core.css">
 		<script src="view/js/bootstrap.js"></script>

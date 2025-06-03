@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2025 at 08:22 AM
+-- Generation Time: Jun 03, 2025 at 09:09 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,18 @@ CREATE TABLE `absen` (
   `id_anggota` int(11) NOT NULL,
   `id_ekstra` int(11) NOT NULL,
   `tanggal_absen` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,6 +112,18 @@ INSERT INTO `ekstra` (`id_ekstra`, `nama_ekstra`) VALUES
 (9, 'PMR'),
 (10, 'PIK-R');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembina`
+--
+
+CREATE TABLE `pembina` (
+  `id_pembina` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -111,6 +135,12 @@ ALTER TABLE `absen`
   ADD PRIMARY KEY (`id_absensi`),
   ADD UNIQUE KEY `id_anggota` (`id_anggota`),
   ADD UNIQUE KEY `id_ekstra` (`id_ekstra`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `anggota`
@@ -133,6 +163,12 @@ ALTER TABLE `ekstra`
   ADD PRIMARY KEY (`id_ekstra`);
 
 --
+-- Indexes for table `pembina`
+--
+ALTER TABLE `pembina`
+  ADD PRIMARY KEY (`id_pembina`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -141,6 +177,12 @@ ALTER TABLE `ekstra`
 --
 ALTER TABLE `absen`
   MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `anggota`
@@ -159,6 +201,12 @@ ALTER TABLE `bukti`
 --
 ALTER TABLE `ekstra`
   MODIFY `id_ekstra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `pembina`
+--
+ALTER TABLE `pembina`
+  MODIFY `id_pembina` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
